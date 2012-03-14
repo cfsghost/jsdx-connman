@@ -10,14 +10,23 @@ module.exports = function() {
 			self.manager = dbus.get_interface(self.systemBus, 'net.connman', '/', 'net.connman.Manager');
 			self.properties = self.manager.GetProperties();
 
-			console.log(self.manager);
+			console.log(self.manager.GetProperties());
+//			console.log(self.manager);
 
 			callback();
 		});
 	};
 
 	this.__defineGetter__('AvailableTechnologies', function() {
-		return self.properties.AvailableTechnologies;
+		return self.manager.GetProperties().AvailableTechnologies;
+	});
+
+	this.__defineGetter__('EnabledTechnologies', function() {
+		return self.manager.GetProperties().EnabledTechnologies;
+	});
+
+	this.__defineGetter__('ConnectedTechnologies', function() {
+		return self.manager.GetProperties().ConnectedTechnologies;
 	});
 
 	this.__defineGetter__('GetState', function() {

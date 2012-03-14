@@ -2,12 +2,12 @@ var ConnMan = require('../index.js');
 
 var connman = new ConnMan();
 connman.init(function() {
-	if (connman.Wifi.isPowered)
+	if (connman.Wifi.Powered)
 		console.log('Wifi is powered');
 	else
 		console.log('Wifi is not powered');
 
-	if (connman.Wifi.isConnected)
+	if (connman.Wifi.Connected)
 		console.log('Wifi is connected');
 	else
 		console.log('Wifi is not connected');

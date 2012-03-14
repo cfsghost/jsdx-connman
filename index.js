@@ -6,6 +6,7 @@
  */
 
 var dbus = require('node-dbus');
+var Technology = require('./lib/technology');
 var Wifi = require('./lib/wifi');
 var Wired = require('./lib/wired');
 var Agent = require('./lib/agent');
@@ -20,6 +21,7 @@ module.exports = function() {
 //			self.agent = dbus.get_interface(self.systemBus, 'net.connman', '/net/connman/agent', 'net.connman.Agent');
 
 			/* Modules */
+			self.Technology = new Technology(self);
 			self.Wifi = new Wifi(self);
 			self.Wired = new Wired(self);
 			self.Agent = new Agent(self);

@@ -19,8 +19,8 @@ module.exports = function() {
 			/* Modules */
 			self.Wifi = new Wifi(self);
 
-//			console.log(self.manager.GetProperties());
-			console.log(self.manager);
+			console.log(self.manager.GetProperties());
+//			console.log(self.manager);
 
 			callback();
 		});
@@ -42,8 +42,8 @@ module.exports = function() {
 		return self.manager.GetProperties().DefaultTechnology;
 	});
 
-	this.__defineGetter__('GetState', function() {
-		return self.manager.GetState();
+	this.__defineGetter__('State', function() {
+		return self.manager.GetProperties().State;
 	});
 
 	this.__defineGetter__('OfflineMode', function() {
@@ -51,7 +51,7 @@ module.exports = function() {
 	});
 
 	this.__defineSetter__('OfflineMode', function(value) {
-		return self.manager.SetProperty('OfflineMode', false);
+		return self.manager.SetProperty('OfflineMode', value);
 	});
 
 	/* Methods */

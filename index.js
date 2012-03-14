@@ -15,6 +15,7 @@ module.exports = function() {
 		dbus.start(function() {
 			self.systemBus = dbus.system_bus();
 			self.manager = dbus.get_interface(self.systemBus, 'net.connman', '/', 'net.connman.Manager');
+//			self.agent = dbus.get_interface(self.systemBus, 'net.connman', '/net/connman/agent', 'net.connman.Agent');
 
 			/* Modules */
 			self.Wifi = new Wifi(self);
@@ -25,22 +26,6 @@ module.exports = function() {
 			callback();
 		});
 	};
-
-	this.__defineGetter__('AvailableTechnologies', function() {
-		return self.manager.GetProperties().AvailableTechnologies;
-	});
-
-	this.__defineGetter__('EnabledTechnologies', function() {
-		return self.manager.GetProperties().EnabledTechnologies;
-	});
-
-	this.__defineGetter__('ConnectedTechnologies', function() {
-		return self.manager.GetProperties().ConnectedTechnologies;
-	});
-
-	this.__defineGetter__('DefaultTechnology', function() {
-		return self.manager.GetProperties().DefaultTechnology;
-	});
 
 	this.__defineGetter__('State', function() {
 		return self.manager.GetProperties().State;
@@ -55,18 +40,6 @@ module.exports = function() {
 	});
 
 	/* Methods */
-	this.EnableTechnology = function(technology) {
-		process.nextTick(function() {
-			self.manager.EnableTechnology(technology);
-		});
-	};
-
-	this.DisableTechnology = function(technology) {
-		process.nextTick(function() {
-			self.manager.DisableTechnology(technology);
-		});
-	};
-
 	this.GetServices = function() {
 		return self.manager.GetServices();
 	};

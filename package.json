@@ -1,0 +1,28 @@
+{
+	"name": "jsdx-connman",
+	"version": "0.0.1",
+	"description": "JSDX Connection Manager API",
+	"keywords": [
+		"Connection Manager",
+		"gui"
+	],
+	"author": {
+		"name": "Fred Chien(錢逢祥)",
+		"email": "fred@mandice.com",
+		"web": "http://people.linux.org.tw/~fred/"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:cfsghost/jsdx-connman.git"
+	},
+	"directories": {
+		"tests": "lib"
+	},
+	"engines": {
+		"node": ">= 0.4.0"
+	},
+	"scripts": {
+		"install": "node-waf configure build"
+	}
+}

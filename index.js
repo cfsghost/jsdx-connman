@@ -7,6 +7,7 @@
 
 var dbus = require('node-dbus');
 var Wifi = require('./lib/wifi');
+var Agent = require('./lib/agent');
 
 module.exports = function() {
 	var self = this;
@@ -19,8 +20,9 @@ module.exports = function() {
 
 			/* Modules */
 			self.Wifi = new Wifi(self);
+			self.Agent = new Agent(self);
 
-			console.log(self.manager.GetProperties());
+//			console.log(self.manager.GetProperties());
 //			console.log(self.manager);
 
 			callback();

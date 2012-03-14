@@ -15,17 +15,16 @@ module.exports = function() {
 		dbus.start(function() {
 			self.systemBus = dbus.system_bus();
 			self.manager = dbus.get_interface(self.systemBus, 'net.connman', '/', 'net.connman.Manager');
-			self.properties = self.manager.GetProperties();
+
+			/* Modules */
+			self.Wifi = new Wifi(self);
 
 //			console.log(self.manager.GetProperties());
-//			console.log(self.manager);
+			console.log(self.manager);
 
 			callback();
 		});
 	};
-
-	/* Modules */
-	this.Wifi = new Wifi(self);
 
 	this.__defineGetter__('AvailableTechnologies', function() {
 		return self.manager.GetProperties().AvailableTechnologies;

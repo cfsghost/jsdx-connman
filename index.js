@@ -1,6 +1,12 @@
-//var dbus = module.exports = require('node-dbus');
+/*
+ * JSDX Connection Manager API
+ *
+ * Copyright(c) 2012 Fred Chien <fred@mandice.com>
+ *
+ */
+
 var dbus = require('node-dbus');
-var EventEmitter = require('events').EventEmitter;
+var Wifi = require('./lib/wifi');
 
 module.exports = function() {
 	var self = this;
@@ -17,6 +23,9 @@ module.exports = function() {
 			callback();
 		});
 	};
+
+	/* Modules */
+	this.Wifi = new Wifi(self);
 
 	this.__defineGetter__('AvailableTechnologies', function() {
 		return self.manager.GetProperties().AvailableTechnologies;
@@ -57,5 +66,9 @@ module.exports = function() {
 		process.nextTick(function() {
 			self.manager.DisableTechnology(technology);
 		});
+	};
+
+	this.GetServices = function() {
+		return self.manager.GetServices();
 	};
 };

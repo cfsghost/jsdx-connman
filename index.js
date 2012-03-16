@@ -13,6 +13,7 @@ var Agent = require('./lib/agent');
 
 module.exports = function() {
 	var self = this;
+	self.dbus = dbus;
 
 	this.init = function(callback) {
 		dbus.start(function() {

@@ -18,7 +18,10 @@ connman.init(function() {
 			console.log('Got ' + list.length + ' Access Point(s)');
 			for (var index in list) {
 				var ap = list[index];
-				console.log('[' + ap.Name + ']');
+				if (ap.Name)
+					console.log('[' + ap.Name + ']');
+				else
+					console.log('[*hidden*]');
 				console.log('Strength: ' + ap.Strength + '%');
 				console.log('Security: ' + ap.Security);
 				console.log('');

@@ -24,6 +24,9 @@
 	"engines": {
 		"node": ">= 0.4.0"
 	},
+	"dependencies": {
+		"dbus": ">= 0.0.4"
+	},
 	"scripts": {
 		"install": "node-waf configure build"
 	}

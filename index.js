@@ -5,7 +5,7 @@
  *
  */
 
-var dbus = require('node-dbus');
+var dbus = require('dbus');
 var Technology = require('./lib/technology');
 var Wifi = require('./lib/wifi');
 var Wired = require('./lib/wired');

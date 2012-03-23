@@ -3,7 +3,9 @@
 	"version": "0.0.1",
 	"description": "JSDX Connection Manager API",
 	"keywords": [
-		"Connection Manager",
+		"jsdx",
+		"connection manager",
+		"network",
 		"gui"
 	],
 	"author": {

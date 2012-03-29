@@ -26,8 +26,5 @@
 	},
 	"dependencies": {
 		"dbus": ">= 0.0.4"
-	},
-	"scripts": {
-		"install": "node-waf configure build"
 	}
 }

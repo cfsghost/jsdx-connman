@@ -8,6 +8,7 @@
 		"network",
 		"gui"
 	],
+	"homepage": "https://github.com/cfsghost/jsdx-connman",
 	"author": {
 		"name": "Fred Chien(錢逢祥)",
 		"email": "fred@mandice.com",

@@ -18,10 +18,11 @@ connman.init(function() {
 
 	connman.Agent.on('RequestInput', function(path, dict) {
 		console.log(dict);
-
+/*
 		if ('Passphrase' in dict) {
 			return { 'Passphrase': '12345' };
 		}
+*/
 	});
 
 	connman.Agent.on('Cancel', function() {

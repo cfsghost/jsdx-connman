@@ -34,7 +34,7 @@ module.exports = function() {
 
 			for (var index in List) {
 				service = List[index];
-				if (service[1].State == 'online') {
+				if (service[1].State == 'ready') {
 					onlineServiceInfo = service;
 
 					callback(null, service);
@@ -53,8 +53,6 @@ module.exports = function() {
 		_GetOnlineService(function(err, service) {
 
 			if (!err) {
-				console.log(999)
-
 				onlineService = dbus.get_interface(self.systemBus, 'net.connman', service[0], 'net.connman.Service');
 
 				/* Using Wifi service's PropertyChanged signal to get updates */
@@ -77,7 +75,7 @@ module.exports = function() {
 	var _PropertyChangedCallback = function(name, value) {
 		if (name == 'State') {
 			switch(value) {
-			case 'online':
+			case 'ready':
 				if (onlineService) {
 					onlineService = null;
 				}

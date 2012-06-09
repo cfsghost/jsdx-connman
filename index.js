@@ -19,6 +19,11 @@ module.exports = function() {
 	var PropertyChangedCallback = null;
 
 	self.dbus = dbus;
+	self.manager = null;
+	self.systemBus = null;
+	self.Wifi = null;
+	self.Wired = null;
+	self.Agent = null;
 
 	/* Internal Functions */
 	var _GetOnlineService = function(callback) {
@@ -47,15 +52,16 @@ module.exports = function() {
 		/* Update current online service */
 		_GetOnlineService(function(err, service) {
 
-			if (err)
-				return;
+			if (!err) {
+				console.log(999)
 
-			onlineService = dbus.get_interface(self.systemBus, 'net.connman', service[0], 'net.connman.Service');
+				onlineService = dbus.get_interface(self.systemBus, 'net.connman', service[0], 'net.connman.Service');
 
-			/* Using Wifi service's PropertyChanged signal to get updates */
-			if (service[1].Type == 'wifi') {
-				self.Wifi._internalServiceChangedCallback = _OnlineServiceChangedCallback;
-				self.Wifi._enableServiceChanged();
+				/* Using Wifi service's PropertyChanged signal to get updates */
+				if (service[1].Type == 'wifi') {
+					self.Wifi._internalServiceChangedCallback = _OnlineServiceChangedCallback;
+					self.Wifi._enableServiceChanged();
+				}
 			}
 
 			if (callback)

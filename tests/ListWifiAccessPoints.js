@@ -18,14 +18,13 @@ connman.init(function() {
 			console.log('Got ' + list.length + ' Access Point(s)');
 			for (var index in list) {
 				var ap = list[index];
-				if (ap.Name)
-					console.log('[' + ap.Name + ']');
-				else
-					console.log('[*hidden*]');
-				console.log('Strength: ' + ap.Strength + '%');
-				console.log('Security: ' + ap.Security);
-				console.log('');
+				console.log('  ' + (ap.Name ? ap.Name : '*hidden*') + '\t\t\t', 'Strength: ' + ap.Strength + '%', 'Security: ' + ap.Security);
 			}
+
+			process.exit();
 		});
 	});
+
+	/* Loop */
+	connman.Agent.run();
 });

@@ -28,6 +28,4 @@ connman.init(function() {
 	connman.Agent.on('Cancel', function() {
 		console.log('Cancel');
 	});
-
-	connman.Agent.run();
 });

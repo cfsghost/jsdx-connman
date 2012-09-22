@@ -24,7 +24,4 @@ connman.init(function() {
 			process.exit();
 		});
 	});
-
-	/* Loop */
-	connman.Agent.run();
 });

@@ -14,6 +14,4 @@ connman.init(function() {
 		console.log('Property Changed:');
 		console.log(name, value);
 	});
-
-	connman.Agent.run();
 });

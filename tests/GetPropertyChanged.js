@@ -9,6 +9,4 @@ connman.init(function() {
 	connman.Wifi.onPropertyChanged(function(name, value) {
 		console.log('[Wifi]', name, value);
 	});
-
-	connman.Agent.run();
 });

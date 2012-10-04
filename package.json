@@ -1,6 +1,6 @@
 {
 	"name": "jsdx-connman",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "JSDX Connection Manager API",
 	"keywords": [
 		"jsdx",

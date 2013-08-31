@@ -34,7 +34,7 @@ module.exports = function() {
 
 			for (var index in List) {
 				service = List[index];
-				if (service[1].State == 'ready') {
+				if (service[1].State == 'online') {
 					onlineServiceInfo = service;
 
 					callback(null, service);

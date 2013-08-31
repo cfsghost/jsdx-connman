@@ -1,6 +1,6 @@
 {
 	"name": "jsdx-connman",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "JSDX Connection Manager API",
 	"keywords": [
 		"jsdx",
@@ -23,7 +23,7 @@
 		"tests": "lib"
 	},
 	"engines": {
-		"node": ">= 0.4.0"
+		"node": ">= 0.8.0"
 	},
 	"dependencies": {
 		"dbus": ">= 0.0.6"

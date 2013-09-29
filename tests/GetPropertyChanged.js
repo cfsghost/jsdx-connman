@@ -1,12 +1,12 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	connman.onPropertyChanged(function(name, value) {
+	connman.on('PropertyChanged', function(name, value) {
 		console.log('[Manager]', name, value);
 	});
 
-	connman.Wifi.onPropertyChanged(function(name, value) {
+	connman.Wifi.on('PropertyChanged', function(name, value) {
 		console.log('[Wifi]', name, value);
 	});
 });

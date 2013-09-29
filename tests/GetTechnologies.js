@@ -1,7 +1,11 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	
-	console.log(connman.GetTechnologies());
+
+	connman.getTechnologies(function(err, technologies) {
+		console.log(technologies);
+		process.exit();
+	});
+
 });

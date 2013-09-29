@@ -1,6 +1,11 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	console.log(connman.GetServices());
+
+	connman.getServices(function(err, services) {
+		console.log(services);
+
+		process.exit();
+	});
 });

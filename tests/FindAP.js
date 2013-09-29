@@ -3,11 +3,9 @@ var ConnMan = require('../');
 var connman = new ConnMan();
 connman.init(function() {
 
-	connman.getOnlineService(function(err, service) {
-		if (err)
-			return;
-
+	connman.Wifi.findAccessPoint('1F', function(err, service) {
 		console.log(service);
 		process.exit();
 	});
+
 });

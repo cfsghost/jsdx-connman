@@ -1,6 +1,10 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	console.log(connman.State);
+
+	connman.getProperties(function(err, props) {
+		console.log(props.State);
+		process.exit();
+	});
 });

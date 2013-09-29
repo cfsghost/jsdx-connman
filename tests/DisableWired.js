@@ -1,6 +1,11 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	connman.Wired.Powered = false;
+
+	connman.Wired.disconnect(function(err) {
+		connman.Wired.setProperty('Powered', false, function() {
+			process.exit();
+		});
+	});
 });

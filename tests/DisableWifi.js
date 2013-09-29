@@ -1,6 +1,9 @@
-var ConnMan = require('../index.js');
+var ConnMan = require('../');
 
 var connman = new ConnMan();
 connman.init(function() {
-	connman.Wifi.Powered = false;
+
+	connman.Wifi.setProperty('Powered', false, function() {
+		process.exit();
+	});
 });

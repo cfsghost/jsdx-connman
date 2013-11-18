@@ -3,14 +3,14 @@ var ConnMan = require('../');
 var connman = new ConnMan();
 connman.init(function() {
 
-	// Scanning
-	var technology = connman.technologies['WiFi'];
+	var wifi = connman.technologies['WiFi'];
 
+	// Scanning
 	console.log('Scanning...');
-	technology.scan(function() {
+	wifi.scan(function() {
 
 		// Getting list of access points
-		technology.listAccessPoints(function(err, list) {
+		wifi.listAccessPoints(function(err, list) {
 			console.log('Got ' + list.length + ' Access Point(s)');
 			for (var index in list) {
 				var ap = list[index];

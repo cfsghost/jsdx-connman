@@ -5,80 +5,84 @@ connman.init(function() {
 
 	var wifi = connman.technologies['WiFi'];
 
-	wifi.findAccessPoint('Fred', function(err, ap) {
-		if (!ap) {
+	wifi.findAccessPoint('Fred', function(err, service) {
+		if (!service) {
 			console.log('No such access point');
 			process.exit();
 			return;
 		}
 
-		/* Making connection to access point */
-		ap.connect(function(err, agent) {
+		connman.getConnection(service.serviceName, function(err, ap) {
 
-			if (err)
-				return;
+			/* Making connection to access point */
+			ap.connect(function(err, agent) {
 
-			var failed = false;
-
-			console.log('Connecting ...');
-
-			agent.on('Release', function() {
-				console.log('Release');
-			});
-
-			agent.on('ReportError', function(path, err) {
-				console.log('ReportError:');
-				console.log(err);
-				failed = true;
-				/* connect-failed */
-				/* invalid-key */
-			});
-
-			agent.on('RequestBrowser', function(path, url) {
-				console.log('RequestBrowser');
-			});
-
-			/* Initializing Agent for connecting access point */
-			agent.on('RequestInput', function(path, dict, callback) {
-				console.log(dict);
-
-				if ('Passphrase' in dict) {
-					callback({ 'Passphrase': '12345' });
+				if (err)
 					return;
-				}
 
-				callback({});
-			});
+				var failed = false;
 
-			agent.on('Cancel', function() {
-				console.log('Cancel');
-			});
+				console.log('Connecting ...');
 
-			connman.Wifi.on('PropertyChanged', function(name, value) {
-				console.log(name + '=' + value);
+				agent.on('Release', function() {
+					console.log('Release');
+				});
 
-				if (name == 'State') {
-					switch(value) {
-					case 'failure':
-						console.log('Connection failed');
-						break;
+				agent.on('ReportError', function(path, err) {
+					console.log('ReportError:');
+					console.log(err);
+					failed = true;
+					/* connect-failed */
+					/* invalid-key */
+				});
 
-					case 'association':
-						console.log('Associating ...');
-						break;
+				agent.on('RequestBrowser', function(path, url) {
+					console.log('RequestBrowser');
+				});
 
-					case 'configuration':
-						console.log('Configuring ...');
-						break;
+				/* Initializing Agent for connecting access point */
+				agent.on('RequestInput', function(path, dict, callback) {
+					console.log(dict);
 
-					case 'online':
-						console.log('Connected');
-						process.exit();
-						break;
+					if ('Passphrase' in dict) {
+						callback({ 'Passphrase': '12345' });
+						return;
 					}
-				}
 
+					callback({});
+				});
+
+				agent.on('Cancel', function() {
+					console.log('Cancel');
+				});
+
+				ap.on('PropertyChanged', function(name, value) {
+					console.log(name + '=' + value);
+
+					if (name == 'State') {
+						switch(value) {
+						case 'failure':
+							console.log('Connection failed');
+							break;
+
+						case 'association':
+							console.log('Associating ...');
+							break;
+
+						case 'configuration':
+							console.log('Configuring ...');
+							break;
+
+						case 'online':
+							console.log('Connected');
+							process.exit();
+							break;
+						}
+					}
+
+				});
 			});
+
 		});
 	});
 

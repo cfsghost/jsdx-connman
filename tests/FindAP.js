@@ -5,11 +5,13 @@ connman.init(function() {
 
 	var wifi = connman.technologies['WiFi'];
 
-	wifi.findAccessPoint('Fred', function(err, ap) {
-		console.log();
-	});
+	wifi.findAccessPoint('Fred', function(err, service) {
+		if (!service) {
+			console.log('No such access point');
+			process.exit();
+			return;
+		}
 
-	connman.Wifi.findAccessPoint('1F', function(err, service) {
 		console.log(service);
 		process.exit();
 	});

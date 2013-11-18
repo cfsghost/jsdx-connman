@@ -1,6 +1,6 @@
 {
   "name": "jsdx-connman",
-  "version": "0.0.6",
+  "version": "0.2.0",
   "description": "JSDX Connection Manager API",
   "keywords": [
     "jsdx",
@@ -12,7 +12,7 @@
   "author": {
     "name": "Fred Chien(錢逢祥)",
     "email": "fred@mandice.com",
-    "web": "http://people.linux.org.tw/~fred/"
+    "web": "http://www.mandice.com/"
   },
   "license": "MIT",
   "repository": {

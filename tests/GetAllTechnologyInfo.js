@@ -1,0 +1,11 @@
+var ConnMan = require('../');
+
+var connman = new ConnMan();
+connman.init(function() {
+
+	connman.getAllTechnologyInfo(function(err, technologies) {
+		console.log(technologies);
+		process.exit();
+	});
+
+});

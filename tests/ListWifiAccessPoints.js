@@ -3,32 +3,24 @@ var ConnMan = require('../');
 var connman = new ConnMan();
 connman.init(function() {
 
-	console.log('Getting Wifi properties ...');
-	connman.Wifi.getProperties(function(err, props) {
-		if (props.Powered)
-			console.log('Wifi is powered');
-		else
-			console.log('Wifi is not powered');
+	// Scanning
+	var technology = connman.technologies['WiFi'];
 
-		if (props.Connected)
-			console.log('Wifi is connected');
-		else
-			console.log('Wifi is not connected');
-		
+	console.log('Scanning...');
+	technology.scan(function() {
 
-		console.log('Scanning Access Point ...');
-		connman.Wifi.scan(function() {
+		// Getting list of access points
+		technology.listAccessPoints(function(err, list) {
+			console.log('Got ' + list.length + ' Access Point(s)');
+			for (var index in list) {
+				var ap = list[index];
 
-			connman.Wifi.listAccessPoints(function(err, list) {
-				console.log('Got ' + list.length + ' Access Point(s)');
-				for (var index in list) {
-					var ap = list[index];
-					console.log('  ' + (ap.Name ? ap.Name : '*hidden*') + '\t\t\t', 'Strength: ' + ap.Strength + '%', 'Security: ' + ap.Security);
-				}
+				var name = String('                ' + (ap.Name ? ap.Name : '*hidden*')).slice(-16);
+				console.log('  ' + name, '  Strength: ' + ap.Strength + '%', '  Security: ' + ap.Security);
+			}
 
-				process.exit();
-			});
-
+			process.exit();
 		});
 	});
+
 });

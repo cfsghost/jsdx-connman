@@ -1,24 +1,36 @@
 var ConnMan = require('../');
+var async = require('async');
 
 var connman = new ConnMan();
 connman.init(function() {
 
-	connman.getServices('wired', function(err, services) {
+	var wired = connman.technologies['Wired'];
 
-		for (var serviceName in services) {
+	// Getting current connections
+	wired.getServices(function(err, services) {
+
+		async.eachSeries(Object.keys(services), function(serviceName, next) {
 
 			connman.getConnection(serviceName, function(err, conn) {
 
-				// Disconnection
+				// Disconnect
 				conn.disconnect(function(err) {
 
-					// Power off
-					conn.setProperty('Powered', false, function() {
+					next();
 
-					});
 				});
 				
 			});
-		}
+
+		}, function() {
+
+			// Power off
+			wired.setProperty('Powered', false, function() {
+
+				console.log('Disabled');
+				process.exit();
+
+			});
+		});
 	});
 });

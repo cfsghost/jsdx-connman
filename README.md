@@ -1,6 +1,6 @@
 jsdx-connman
 ---
-It aims to provide standard API to control network connection on JSDX framework.
+jsdx-connman is written in Node.js, and aims to provide standard JavaScript APIs to manage network connections. It's based on ConnMan which is lightweight and less dependencies than others. That means no need to install fat GNOME Network Manager anymore.
 
 License
 -
